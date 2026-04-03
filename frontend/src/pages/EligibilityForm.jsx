@@ -26,7 +26,8 @@ const EligibilityForm = () => {
         loanType: data.loanType
       };
 
-      const response = await axios.post('http://localhost:8080/api/loan/check', payload);
+      const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+      const response = await axios.post(`${API_BASE_URL}/api/loan/check`, payload);
       navigate('/results', { state: { data: response.data } });
     } catch (err) {
       console.error(err);
